@@ -1,14 +1,41 @@
-pub struct state {
-    pc :u256 , 
-    stack : u32 , 
-    memory : u32 ,
-    storage : u32 , 
-    sender : u32 , 
-    program : u32 ,
-    gas : u32 , 
-    value : u32 ,
-    callData : u32 ,
-    stop_flag : bool ,
-    returnData : u32 ,
-    logs : u32 , 
+
+#[derive(Drop, Copy, Debug)]
+pub struct State {
+    pub pc :u256 , 
+    pub stack : u32 , 
+    pub memory : u32 ,
+    pub storage : u32 , 
+    pub sender : u32 , 
+    pub program : u32 ,
+    pub gas : u32 , 
+    pub value : u32 ,
+    pub callData : u32 ,
+    pub stop_flag : bool ,
+    pub returnData : u32 ,
+    pub logs : u32 , 
 }
+
+pub trait StateTrait {
+    fn init() -> State;
+}
+
+impl Stateimpl of StateTrait {
+    fn init() -> State {
+        State {
+            pc : 0,
+            stack : 0,
+            memory : 0,
+            storage : 0,
+            sender : 0,
+            program : 0,
+            gas : 0,
+            value : 0,
+            callData : 0,
+            stop_flag : false,
+            returnData : 0,
+            logs : 0,
+        }
+    } 
+}
+
+
