@@ -1,8 +1,8 @@
-
-#[derive(Drop, Copy, Debug)]
+use alexandria_data_structures::stack::{StackTrait , Felt252Stack} ; 
+ #[derive( Destruct  )]
 pub struct State {
     pub pc :u256 , 
-    pub stack : u32 , 
+    pub stack : Felt252Stack<u32> , 
     pub memory : u32 ,
     pub storage : u32 , 
     pub sender : u32 , 
@@ -19,11 +19,11 @@ pub trait StateTrait {
     fn init() -> State;
 }
 
-impl Stateimpl of StateTrait {
+impl Stateimpl  of StateTrait {
     fn init() -> State {
         State {
             pc : 0,
-            stack : 0,
+            stack : StackTrait::new(),
             memory : 0,
             storage : 0,
             sender : 0,
